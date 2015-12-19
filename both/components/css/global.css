@@ -1,0 +1,22 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: #fff;
+}
+
+.hide {
+    display: none;
+}
+
+
+/* ----------- Desktop ----------- */
+@media only screen 
+  and (min-width: 737px) { 
+
+    .mobile {
+        display: none;
+    }
+}
+

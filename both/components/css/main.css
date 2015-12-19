@@ -1,0 +1,19 @@
+.intro {
+	text-align: center;
+}
+
+.intro h2 {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.derpkid {
+	height: 300px;
+	padding: 20px;
+}
+
+.button-container {
+	padding: 10px;
+	text-align: center;
+	width: 100%;
+}
