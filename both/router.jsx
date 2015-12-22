@@ -1,4 +1,4 @@
-FlowRouter.route("/", {
+FlowRouter.route('/', {
   subscriptions: function() {
     // var selector = {category: {$ne: "private"}};
     // this.register('posts', Meteor.subscribe('posts', selector));
@@ -6,6 +6,14 @@ FlowRouter.route("/", {
   action: function() {
     ReactLayout.render(MainLayout, {
       content: <Home />
+    });
+  }
+});
+
+FlowRouter.route('/signup', {
+  action: function() {
+    ReactLayout.render(MainLayout, {
+      content: <SignUp />
     });
   }
 });

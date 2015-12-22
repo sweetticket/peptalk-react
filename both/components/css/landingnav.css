@@ -5,3 +5,8 @@
 .navbar-btn {
 	margin-left: 10px;
 }
+
+
+.navbar li {
+	display: inline-block;
+}
