@@ -132,22 +132,22 @@ SignUp = React.createClass({
 			            <span id="incomplete" className="help-block hide">Please fill out all fields</span>
 			          </div>
 			          <div className="form-group">
-			            <label className="control-label" for="fullname">Full name</label>
+			            <label className="control-label" htmlFor="fullname">Full name</label>
 			            <input type="text" className="form-control" name="fullname" id="fullname" />
 			          </div>
 			          <div className="form-group">
-			            <label className="control-label" for="email">Your school email</label>
+			            <label className="control-label" htmlFor="email">Your school email</label>
 			            <input type="email" className="form-control" name="email" id="email" />
 			            <span id="emailHelpBlock" className="help-block hide">Please enter a valid email</span>
 			            <span id="blackListHelpBlock" className="help-block hide">You cannot use that domain. Please enter your school email.</span>
 			            <span id="emailExistsHelpBlock" className="help-block hide">An account with that email already exists.</span>
 			          </div>
 			          <div className="form-group">
-			            <label className="control-label" for="password">Choose a password</label>
+			            <label className="control-label" htmlFor="password">Choose a password</label>
 			            <input type="password" className="form-control" name="password" id="password" />
 			          </div>
 			          <div className="form-group">
-			            <label className="control-label" for="password2">Confirm password</label>
+			            <label className="control-label" htmlFor="password2">Confirm password</label>
 			            <input type="password" className="form-control" name="password2" id="password2" />
 			            <span id="passwordHelpBlock" className="help-block hide">Passwords do not match</span>
 			          </div>
