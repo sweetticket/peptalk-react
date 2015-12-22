@@ -48,7 +48,8 @@ SignUp = React.createClass({
 		}
 	},
 
-	attemptSignUp: function() {
+	attemptSignUp: function(e) {
+		e.preventDefault();
 		var email = $('#email').val().trim();
     var password = $('#password').val();
     var password2 = $('#password2').val();
@@ -71,7 +72,7 @@ SignUp = React.createClass({
     } else {
       $('#incomplete').addClass("hide");
       $('.has-error').removeClass('has-error');
-      if (_checkEmailValid() && _checkPasswordMatch()) {
+      if (this._checkEmailValid() && this._checkPasswordMatch()) {
         console.log("all fields are valid..");
         // todo: send validation email
 
@@ -118,6 +119,18 @@ SignUp = React.createClass({
 		}
 		return <h2>Students Get Started</h2>
 	},
+
+	componentDidMount: function() {
+    $('.signup-submit button').click(this.attemptSignUp);
+    $('#email').change(this._checkEmailValid);
+    $('#password2').change(this._checkPasswordMatch);
+  },
+
+  componentWillUnmount: function() {
+    $('.signup-submit button').unbind();
+    $('#email').unbind();
+    $('#password2').unbind();
+  },
 
 	render: function() {
 		return (
