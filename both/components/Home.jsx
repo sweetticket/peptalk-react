@@ -1,10 +1,26 @@
 Home = React.createClass({
 
-	toSignUp: function(e, mode) {
-		e.preventDefault();
-		Session.set("signUpMode", mode);
-    	FlowRouter.go("/signup");
+	toSignUp: function(e) {
+    e.preventDefault();
+    if ($(e.target).hasClass('signup-instructor')){
+      Session.set("signUpMode", "instructor");
+      FlowRouter.go("/signup");
+    } else if ($(e.target).hasClass('signup-student')){
+      Session.set("signUpMode", "student");
+      FlowRouter.go("/signup");
+    }
 	},
+
+	componentDidMount: function() {
+    $('.button-container').click(this.toSignUp);
+    // $('.button-container').click(function(e) {
+    // 	this.toSignUp(e);
+    // });
+  },
+
+  componentWillUnmount: function() {
+  	$('.button-container').unbind();
+  },
 
 	render: function() {
 		Session.set("signUpMode", undefined);
@@ -19,8 +35,8 @@ Home = React.createClass({
 				  <div className="row">
 				    <div className="col-md-12">
 				      <div className="button-container">
-				        <button onClick={this.toSignUp.bind(null, "instructor")} className="btn btn-default signup-instructor">Instructors Get Started</button>
-				        <button onClick={this.toSignUp.bind(null, "student")} className="btn btn-default signup-student">Students Get Started</button>
+				        <button className="btn btn-default signup-instructor">Instructors Get Started</button>
+				        <button className="btn btn-default signup-student">Students Get Started</button>
 				      </div>
 				    </div>
 				  </div>
