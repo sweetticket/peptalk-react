@@ -26,7 +26,6 @@ Home = React.createClass({
 		Session.set("signUpMode", undefined);
 		return (
 			<div>
-				<LandingNav />
 				<div className="container-fluid">
 				  <div className="row intro">
 				    <img className="derpkid" src="/derpkid_icon.png" />

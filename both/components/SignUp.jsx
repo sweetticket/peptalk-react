@@ -135,7 +135,6 @@ SignUp = React.createClass({
 	render: function() {
 		return (
 			<div>
-			<LandingNav />
 			<div className="container-fluid">
 			    <div className="row">
 			      <div className="col-md-12">

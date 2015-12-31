@@ -56,17 +56,17 @@ Meteor.methods({
 Meteor.startup(function() {
   if (Meteor.isServer) {
 
-    Accounts.emailTemplates.from = 'PepTalk <peptalkservices@gmail.com>';
-    Accounts.emailTemplates.siteName = 'PepTalk';
+    Accounts.emailTemplates.from = 'Peptalk <peptalkservices@gmail.com>';
+    Accounts.emailTemplates.siteName = 'Peptalk';
 
     // A Function that takes a user object and returns a String for the subject line of the email.
     Accounts.emailTemplates.verifyEmail.subject = function(user) {
-      return 'Welcome to Yolk!';
+      return 'Welcome to Peptalk!';
     };
 
     Accounts.emailTemplates.verifyEmail.html = function (user, url) {
       var template = "<p style=\"font-weight:bold;\">WELCOME TO PEPTALK!</p>" +
-        "<p> Please click the link: " + url + " to start using PepTalk right away.</p>" +
+        "<p> Please click the link: " + url + " to start using Peptalk right away.</p>" +
         "<br><p>Sweetticket Inc.</p>";
       return template;
     }

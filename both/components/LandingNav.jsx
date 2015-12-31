@@ -1,7 +1,10 @@
 LandingNav = React.createClass({
-
-  toSignIn: function(e) {
-    // FlowRouter.go('/signin');
+  mixins: [ReactMeteorData],
+  getMeteorData() {
+    return {
+      signedInAs: Meteor.userId(),
+      signUpMode: Session.get("signUpMode")
+    };
   },
 
   signOut: function(e) {
@@ -10,23 +13,24 @@ LandingNav = React.createClass({
       if (err) {
         console.log("failed to logout");
       } else {
-        Router.go('/');
+        FlowRouter.go('/');
       }
     });
   },
 
   toSignUp: function(e) {
     e.preventDefault();
-    if (this.hasClass('signup-instructor-nav')) {
+    if ($(e.target).hasClass('signup-instructor-nav')) {
       Session.set("signUpMode", "instructor");
-      Router.go("/signup");
-    } else if (this.hasClass('signup-student-nav')) {
+      FlowRouter.go("/signup");
+    } else if ($(e.target).hasClass('signup-student-nav')) {
       Session.set("signUpMode", "student");
-      Router.go("/signup");
+      FlowRouter.go("/signup");
     }
   },
 
   renderNavButtons: function() {
+
     if (Meteor.user()) {
       return (<li><button onClick={this.signOut} type="button" className="btn btn-default navbar-btn signout-btn">Sign Out</button></li>);
     } else {
@@ -39,7 +43,7 @@ LandingNav = React.createClass({
                     </ul>
                   </li>
                   <li className="signin-btn">
-                    <button type="button" onClick={this.toSignIn} className="btn btn-default navbar-btn signin-btn">
+                    <button type="button" className="btn btn-default navbar-btn signin-btn" data-toggle="modal" data-target="#signInModal">
                       Sign In
                     </button>
                   </li>
@@ -54,8 +58,34 @@ LandingNav = React.createClass({
   },
 	
   render: function() {
-    return (
+    var navButtons;
+    if (this.data.signedInAs) {
+      navButtons = (<li><button onClick={this.signOut} type="button" className="btn btn-default navbar-btn signout-btn">Sign Out</button></li>);
+    } else {
+      if (this.data.signedInAs === undefined) {
+        navButtons = (<span><li className="dropdown signup-btn">
+                    <button type="button" className="btn btn-default navbar-btn signup-btn dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign Up</button>
+                    <ul className="dropdown-menu" onClick={this.toSignUp}>
+                      <li><a href="#" className="signup-instructor-nav">As Instructor</a></li>
+                      <li><a href="#" className="signup-student-nav">As Student</a></li>
+                    </ul>
+                  </li>
+                  <li className="signin-btn">
+                    <button type="button" className="btn btn-default navbar-btn signin-btn" data-toggle="modal" data-target="#signInModal">
+                      Sign In
+                    </button>
+                  </li>
+                </span>);
+      } else {
+        navButtons = (<li>
+                  <button type="button" onClick={this.toSignIn} className="btn btn-default navbar-btn signin-btn">
+                    Sign In
+                  </button>
+                </li>);
+      }
+    }
 
+    return (
       <nav className="navbar navbar-default">
         <div className="container-fluid">
           {/* Brand and toggle get grouped for better mobile display */}
@@ -68,20 +98,16 @@ LandingNav = React.createClass({
             </button>
             <a className="navbar-brand" href="/">PEPTALK</a>
           </div>
-
-          {/* Collect the nav links, forms, and other content for toggling */}
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
               <li><a href="#">About</a></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
-              {this.renderNavButtons()}
+            {navButtons}
             </ul>
           </div>{/*.navbar-collapse*/}
         </div>{/*.container-fluid*/}
       </nav>
-
-
       );
   }
 });
