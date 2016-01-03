@@ -7,10 +7,16 @@ MainLayout = React.createClass({
 
   // getInitialState : function() {
   //   var items = {
-  //     signedInAs : Meteor.userId(),
-  //     signUpMode : Session.get("signUpMode")
+  //     signUpMode : null
   //   };
   //   return { items : items };
+  // },
+
+  // mixins: [ReactMeteorData],
+  // getMeteorData: function() {
+  //   return {
+  //     signedInAs: Meteor.userId(),
+  //   };
   // },
 
 
@@ -20,8 +26,6 @@ MainLayout = React.createClass({
     		<header>
         {/*header goes here*/}
         </header>
-        <SignInModal />
-        <LandingNav />
         <main>
           {this.props.content}
         </main>

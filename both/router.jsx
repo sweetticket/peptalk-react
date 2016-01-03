@@ -10,10 +10,10 @@ FlowRouter.route('/', {
   }
 });
 
-FlowRouter.route('/signup', {
-  action: function() {
+FlowRouter.route('/signup/:mode', {
+  action: function(params, queryParams) {
     ReactLayout.render(MainLayout, {
-      content: <SignUp />
+      content: <SignUp mode={params.mode}/>
     });
   }
 });

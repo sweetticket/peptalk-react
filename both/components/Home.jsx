@@ -1,13 +1,25 @@
 Home = React.createClass({
 
+	// getInitialState : function() {
+ //    var items = {
+ //      signUpMode : null
+ //    };
+ //    return { items : items };
+ //  },
+
+ //  mixins: [ReactMeteorData],
+ //  getMeteorData: function() {
+ //    return {
+ //      signedInAs: Meteor.userId(),
+ //    };
+ //  },
+
 	toSignUp: function(e) {
     e.preventDefault();
     if ($(e.target).hasClass('signup-instructor')){
-      Session.set("signUpMode", "instructor");
-      FlowRouter.go("/signup");
+      FlowRouter.go("/signup/instructor");
     } else if ($(e.target).hasClass('signup-student')){
-      Session.set("signUpMode", "student");
-      FlowRouter.go("/signup");
+      FlowRouter.go("/signup/student");
     }
 	},
 
@@ -23,9 +35,10 @@ Home = React.createClass({
   },
 
 	render: function() {
-		Session.set("signUpMode", undefined);
 		return (
 			<div>
+			<SignInModal />
+      <LandingNav navMode="home"/>
 				<div className="container-fluid">
 				  <div className="row intro">
 				    <img className="derpkid" src="/derpkid_icon.png" />

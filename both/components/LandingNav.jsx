@@ -1,11 +1,11 @@
 LandingNav = React.createClass({
-  mixins: [ReactMeteorData],
-  getMeteorData() {
-    return {
-      signedInAs: Meteor.userId(),
-      signUpMode: Session.get("signUpMode")
-    };
-  },
+
+  // mixins: [ReactMeteorData],
+  // getMeteorData: function() {
+  //   return {
+  //     signedInAs: Meteor.userId(),
+  //   };
+  // },
 
   signOut: function(e) {
     e.preventDefault();
@@ -21,49 +21,22 @@ LandingNav = React.createClass({
   toSignUp: function(e) {
     e.preventDefault();
     if ($(e.target).hasClass('signup-instructor-nav')) {
-      Session.set("signUpMode", "instructor");
-      FlowRouter.go("/signup");
+      FlowRouter.go("/signup/instructor");
     } else if ($(e.target).hasClass('signup-student-nav')) {
-      Session.set("signUpMode", "student");
-      FlowRouter.go("/signup");
-    }
-  },
-
-  renderNavButtons: function() {
-
-    if (Meteor.user()) {
-      return (<li><button onClick={this.signOut} type="button" className="btn btn-default navbar-btn signout-btn">Sign Out</button></li>);
-    } else {
-      if (Session.get("signUpMode") === undefined) {
-        return (<span><li className="dropdown signup-btn">
-                    <button type="button" className="btn btn-default navbar-btn signup-btn dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign Up</button>
-                    <ul className="dropdown-menu" onClick={this.toSignUp}>
-                      <li><a href="#" className="signup-instructor-nav">As Instructor</a></li>
-                      <li><a href="#" className="signup-student-nav">As Student</a></li>
-                    </ul>
-                  </li>
-                  <li className="signin-btn">
-                    <button type="button" className="btn btn-default navbar-btn signin-btn" data-toggle="modal" data-target="#signInModal">
-                      Sign In
-                    </button>
-                  </li>
-                </span>);
-      }
-      return (<li>
-                <button type="button" onClick={this.toSignIn} className="btn btn-default navbar-btn signin-btn">
-                  Sign In
-                </button>
-              </li>);
+      FlowRouter.go("/signup/student");
     }
   },
 	
   render: function() {
     var navButtons;
-    
-    if (this.data.signedInAs) {
-      navButtons = (<li><button onClick={this.signOut} type="button" className="btn btn-default navbar-btn signout-btn">Sign Out</button></li>);
+    if (this.props.navMode === "signUp") {
+      navButtons = (<li>
+                    <button type="button" className="btn btn-default navbar-btn signin-btn" data-toggle="modal" data-target="#signInModal">
+                      Sign In
+                    </button>
+                </li>);
     } else {
-      if (!this.data.signUpMode) {
+      if (this.props.navMode === "home") {
         navButtons = (<span><li className="dropdown signup-btn">
                     <button type="button" className="btn btn-default navbar-btn signup-btn dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign Up</button>
                     <ul className="dropdown-menu" onClick={this.toSignUp}>
@@ -78,11 +51,7 @@ LandingNav = React.createClass({
                   </li>
                 </span>);
       } else {
-        navButtons = (<li>
-                  <button type="button" onClick={this.toSignIn} className="btn btn-default navbar-btn signin-btn">
-                    Sign In
-                  </button>
-                </li>);
+        navButtons = (<li><button onClick={this.signOut} type="button" className="btn btn-default navbar-btn signout-btn">Sign Out</button></li>);
       }
     }
 

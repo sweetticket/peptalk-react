@@ -79,7 +79,7 @@ SignUp = React.createClass({
         Accounts.createUser({
           email: email.toLowerCase(),
           password: password,
-          role: Session.get("signUpMode"),
+          role: this.props.mode,
           fullname: fullname
         }, function (err) {
           if (err) {
@@ -95,12 +95,11 @@ SignUp = React.createClass({
             return false;
           } else {
             var route;
-            if (Session.get("signUpMode") == "instructor") {
+            if (this.props.mode == "instructor") {
               route = '/new';
             } else {
               route = '/search';
             }
-            Session.set("signUpMode", undefined);
             FlowRouter.go(route);
           }
         
@@ -114,7 +113,7 @@ SignUp = React.createClass({
 	},
 
 	renderSignUpMessage: function() {
-		if (Session.get("signUpMode") === "instructor") {
+		if (this.props.mode === "instructor") {
 			return (<h2>Instructors Get Started</h2>);
 		}
 		return <h2>Students Get Started</h2>
@@ -135,6 +134,8 @@ SignUp = React.createClass({
 	render: function() {
 		return (
 			<div>
+			<SignInModal />
+			<LandingNav navMode="signUp"/>
 			<div className="container-fluid">
 			    <div className="row">
 			      <div className="col-md-12">
