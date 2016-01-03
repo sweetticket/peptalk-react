@@ -59,10 +59,11 @@ LandingNav = React.createClass({
 	
   render: function() {
     var navButtons;
+    
     if (this.data.signedInAs) {
       navButtons = (<li><button onClick={this.signOut} type="button" className="btn btn-default navbar-btn signout-btn">Sign Out</button></li>);
     } else {
-      if (this.data.signedInAs === undefined) {
+      if (!this.data.signUpMode) {
         navButtons = (<span><li className="dropdown signup-btn">
                     <button type="button" className="btn btn-default navbar-btn signup-btn dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign Up</button>
                     <ul className="dropdown-menu" onClick={this.toSignUp}>

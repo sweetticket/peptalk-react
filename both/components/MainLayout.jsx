@@ -1,13 +1,17 @@
 MainLayout = React.createClass({
-  updateSignedInAs: function() {
-    this.setState({"signedInAs": Meteor.userId()});
-  },
+  // updateSignedInAs: function() {
+  //   var items = this.state.items;
+  //   items.signedInAs = Meteor.userId();
+  //   this.setState({items:items});
+  // },
 
-  getInitialState : function() {
-    return {
-      signedInAs : Meteor.userId(),
-    };
-  },
+  // getInitialState : function() {
+  //   var items = {
+  //     signedInAs : Meteor.userId(),
+  //     signUpMode : Session.get("signUpMode")
+  //   };
+  //   return { items : items };
+  // },
 
 
 	render: function() {
@@ -17,7 +21,7 @@ MainLayout = React.createClass({
         {/*header goes here*/}
         </header>
         <SignInModal />
-        <LandingNav signedInAs={this.state.signedInAs} />
+        <LandingNav />
         <main>
           {this.props.content}
         </main>
