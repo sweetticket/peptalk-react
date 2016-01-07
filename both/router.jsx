@@ -4,19 +4,35 @@ FlowRouter.route('/', {
     // this.register('posts', Meteor.subscribe('posts', selector));
   },
   action: function() {
-    ReactLayout.render(MainLayout, {
+    ReactLayout.render(App, {
       content: <Home />
     });
   }
 });
 
 FlowRouter.route('/signup/:mode', {
-  action: function(params, queryParams) {
-    ReactLayout.render(MainLayout, {
+  action: function (params, queryParams) {
+    ReactLayout.render(App, {
       content: <SignUp mode={params.mode}/>
     });
   }
 });
+
+FlowRouter.route('/new', {
+  action: function() {
+    ReactLayout.render(App, {
+      content: <NewClass />
+    });
+  }
+});
+
+// FlowRouter.route('/add', {
+//   action: function() {
+//     ReactLayout.render(App, {
+//       content: <AddClass />
+//     });
+//   }
+// });
 
 // FlowRouter.route('/post/:_id', {
 //   name: 'post',

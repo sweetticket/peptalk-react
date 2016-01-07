@@ -1,4 +1,4 @@
-MainLayout = React.createClass({
+App = React.createClass({
   // updateSignedInAs: function() {
   //   var items = this.state.items;
   //   items.signedInAs = Meteor.userId();
