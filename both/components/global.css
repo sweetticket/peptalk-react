@@ -10,6 +10,11 @@ body {
     display: none;
 }
 
+.loading {
+	text-align: center;
+	margin-top: 20%;
+}
+
 
 /* ----------- Desktop ----------- */
 @media only screen 

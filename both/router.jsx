@@ -22,15 +22,23 @@ FlowRouter.route('/signup/:mode', {
 });
 
 FlowRouter.route('/new', {
-  subscriptions: function() {
-    this.register('userInfo', Meteor.subscribe('userInfo'));
-  },
+  // subscriptions: function() {
+  //   this.register('userInfo', Meteor.subscribe('userInfo'));
+  // },
   action: function() {
     ReactLayout.render(App, {
-      content: <NewClass />
+      content: <NewCourse />
     });
   }
 });
+
+// FlowRouter.route('/profile/:id', {
+//   action: function(params, queryParams) {
+//     ReactLayout.render(App, {
+//       content: <Profile userId={params.id}/>
+//     });
+//   }
+// })
 
 // FlowRouter.route('/add', {
 //   action: function() {

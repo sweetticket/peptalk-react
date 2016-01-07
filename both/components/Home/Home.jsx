@@ -7,12 +7,12 @@ Home = React.createClass({
  //    return { items : items };
  //  },
 
- //  mixins: [ReactMeteorData],
- //  getMeteorData: function() {
- //    return {
- //      signedInAs: Meteor.userId(),
- //    };
- //  },
+  mixins: [ReactMeteorData],
+  getMeteorData: function() {
+    return {
+      currentUser: Meteor.user(),
+    };
+  },
 
 	toSignUp: function(e) {
     e.preventDefault();
@@ -24,6 +24,7 @@ Home = React.createClass({
 	},
 
 	componentDidMount: function() {
+		Utils.redirectIfNeeded(this.data.currentUser);
     $('.button-container').click(this.toSignUp);
     // $('.button-container').click(function(e) {
     // 	this.toSignUp(e);

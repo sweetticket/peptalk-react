@@ -1,5 +1,12 @@
 SignUp = React.createClass({
 
+	mixins: [ReactMeteorData],
+  getMeteorData: function() {
+    return {
+      currentUser: Meteor.user(),
+    };
+  },
+
 	_checkPasswordMatch: function() {
 	  var password = $('#password').val();
 	  var password2 = $('#password2').val();
@@ -120,6 +127,7 @@ SignUp = React.createClass({
 	},
 
 	componentDidMount: function() {
+		Utils.redirectIfNeeded(this.data.currentUser);
     $('.signup-submit button').click(this.attemptSignUp);
     $('#email').change(this._checkEmailValid);
     $('#password2').change(this._checkPasswordMatch);

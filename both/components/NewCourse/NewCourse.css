@@ -1,0 +1,18 @@
+h2, h4 {
+	text-align: center;
+}
+
+.new-course-form {
+	width: 70%;
+	min-width: 500px;
+	margin: 0 auto;
+}
+
+.new-course-submit {
+	text-align: center;
+}
+
+#enrolled-students {
+	overflow: scroll;
+	resize: none;
+}
