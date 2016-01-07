@@ -18,8 +18,19 @@ SignInModal = React.createClass({
 	        }
 	      } else {
 	      	console.log('Login sucess!');
+	      	var user = Meteor.user();
 	      	// if student: if is in a class, go to a class page. else, go to class search
 	      	// if professor: if has a class, go to a class page, else, go to create new class
+	      	if (user.courses.length === 0) {
+	      		if (user.role === 'instructor') {
+	      			FlowRouter.go('/new');
+	      		} else {
+	      			FlowRouter.go('/add');
+	      		}
+	      	} else {
+	      		FlowRouter.go('/class/' + user.courses[0]);
+	      	}
+
 	      }
 	    });
 		}

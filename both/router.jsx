@@ -1,7 +1,7 @@
 FlowRouter.route('/', {
   subscriptions: function() {
     // var selector = {category: {$ne: "private"}};
-    // this.register('posts', Meteor.subscribe('posts', selector));
+    this.register('allUsers', Meteor.subscribe('allUsers'));
   },
   action: function() {
     ReactLayout.render(App, {
@@ -11,6 +11,9 @@ FlowRouter.route('/', {
 });
 
 FlowRouter.route('/signup/:mode', {
+  subscriptions: function() {
+    this.register('allUsers', Meteor.subscribe('allUsers'));
+  },
   action: function (params, queryParams) {
     ReactLayout.render(App, {
       content: <SignUp mode={params.mode}/>
@@ -19,6 +22,9 @@ FlowRouter.route('/signup/:mode', {
 });
 
 FlowRouter.route('/new', {
+  subscriptions: function() {
+    this.register('userInfo', Meteor.subscribe('userInfo'));
+  },
   action: function() {
     ReactLayout.render(App, {
       content: <NewClass />
